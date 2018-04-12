@@ -1,16 +1,25 @@
 package com.admin.controllers;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.admin.Extenso;
 import com.admin.models.Recibo;
 import com.admin.repositorys.ReciboRepository;
 
+
 @Controller
 public class ReciboController {
+	
+	Locale ptBr = new Locale("pt", "BR");
+	NumberFormat formato = NumberFormat.getCurrencyInstance(ptBr);
 
 	@Autowired
 	private ReciboRepository rr;
@@ -57,6 +66,26 @@ public class ReciboController {
 		Recibo recibo = rr.findByIdRec(id);
 		ModelAndView mv = new ModelAndView("editarRecibo");
 		mv.addObject("recibo",recibo);	
+		return mv;
+	}
+	
+	@RequestMapping(value="/gerarRecibo", method=RequestMethod.GET)
+	public ModelAndView gerarRecibo(long id){
+		Recibo recibo = rr.findByIdRec(id);
+		ModelAndView mv = new ModelAndView("modelRecibo");
+
+		 // Converte do tipo BigDecimal para a String por extenso.
+        Extenso teste = new Extenso(new BigDecimal(recibo.getValor()));
+
+        // Mostra o número informado no formato de valor monetário.
+        System.out.println("Numero  : " + teste.DecimalFormat());
+
+        // Mostra o número informado no formato de valor por extenso.
+        System.out.println("Extenso : " + teste.toString());
+		
+        mv.addObject("recibo",recibo);	
+		mv.addObject("valorExtenso", teste.toString());
+		mv.addObject("valorFormatado", teste.DecimalFormat());	
 		return mv;
 	}
 	
