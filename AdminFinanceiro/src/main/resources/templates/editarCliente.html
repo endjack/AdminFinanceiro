@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Logical Admin</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="../materialize/css/materialize.min.css" media="screen,projection" />
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+		
+</script>
+
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<!-- Page Layout here -->
+	<div class="container row">
+		<div class="row">
+			<form class="col s12" action="editar" method="post">
+				<div class="row">
+					<div class="input-field col s9">
+						<input id="nome" type="text" class="" name="nome" th:value="${cliente.nome}"> 
+						<label for="nome">Nome Completo</label>
+					</div>
+					<div class="input-field col s3">			 
+						<select name="sexo" class="browser-default">
+							<option value="masculino" th:selected="(${cliente.sexo} == 'masculino')" >Masculino</option>
+							<option value="feminino" th:selected="(${cliente.sexo} == 'feminino')">Feminino</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="end" type="text" class="" name="endereco" th:value="${cliente.endereco}"> 
+						<label for="end">Endereço</label>					
+					</div>	
+				</div>
+				<div class="row">				
+						<div class="input-field col s5">
+							<input id="cpf" type="text" class="" name="cpf" th:value="${cliente.cpf}"> 
+							<label for="cpf">CPF</label>
+						</div>
+						<div class="input-field col s2">
+							<select name="tipoDoc" class="browser-default" th:value="${cliente.tipoDoc}">
+								<option value="RG" selected>RG</option>
+								<option value="PASSAPORTE">PASSAPORTE</option>
+								<option value="DOC">OUTRO</option>
+							</select>
+						</div>
+						<div class="input-field col s5">
+							<input id="doc" type="text" class="" name="doc" th:value="${cliente.doc}"> <label for="doc" >Outro
+								Documento</label>
+						</div>					
+				</div>
+				<div class="row">
+					<div class="input-field col s3">
+						<input id="tel1" type="text" class="" name="tel1" th:value="${cliente.tel1}"> 
+							<label for="tel1">Telefone 1</label>					
+					</div>
+					<div class="input-field col s3">
+						<input id="tel2" type="text" class="" name="tel2" th:value="${cliente.tel2}"> 
+							<label for="tel2">Telefone 2</label>					
+					</div>
+					<div class="input-field col s6">
+						<input id="email" type="text" class="" name="email" th:value="${cliente.email}"> 
+							<label for="email">Email</label>					
+					</div>	
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="data" type="text" class="" name="dataNascimento" th:value="${cliente.dataNascimento}"> 
+							<label for="data">Data de Nascimento</label>					
+					</div>
+					<div class="input-field col s6">
+						<input name="dataInclusao" th:value="${#dates.format(#dates.createNow(),'dd/MM/YYYY')}" id="data-inclusao" type="text" class="validate"> 
+							<label for="dataInclusao" >Data de Inclusão</label>					
+					</div>		
+				</div>
+				
+				<input name="id" th:value="${cliente.id}" type="text" class="hide"> 
+											
+						
+				<div class=" col s12 right-align">
+					<button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+				    <i class="material-icons right">send</i>
+				  </button>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+	<div class="container row">
+		<table class="container">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horario</th>
+					<th>Deletar</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>

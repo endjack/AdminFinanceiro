@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Logical Admin</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="../materialize/css/materialize.min.css" media="screen,projection" />
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+		
+</script>
+
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<!-- Page Layout here -->
+	<div class="container row">
+		<div class="row">
+			
+			<form class="col s12" action="" method="post">
+				<div class="row">
+					<div class="input-field col s9">
+						<input id="nome" type="text" class="" name="nome" th:value="${recibo.nome}">
+						<label for="nome">Nome Completo</label>
+					</div>
+					<div class="input-field col s3">
+							<input id="cpf" type="text" class="" name="cpf" th:value="${recibo.cpf}"> 
+							<label for="cpf">CPF</label>
+						</div>
+				</div>
+				<div class="row">
+				<div class="input-field col s3">
+						<input id="valor" type="text" class="" name="valor" th:value="${recibo.valor}"> 
+							<label for="valor">Valor</label>					
+					</div>								
+						<div class="input-field col s9">
+							<input id="referencia" type="text" class="" name="referencia" th:value="${recibo.referencia}"> 
+							<label for="referencia">Referente a</label>
+						</div>			
+				</div>
+				<div class="row">
+					<div class="input-field col s3">
+						<input name="dataEmissao" th:value="${recibo.dataEmissao}" id="" type="text" class="validate"> 
+							<label for="dataEmissao" >Data de Emissão</label>					
+					</div>	
+			
+				</div>
+				
+				<input name="idRec" th:value="${recibo.idRec}" type="text" class="hide"> 
+				
+				<div class=" col s12 right-align">
+				
+					<button class="btn waves-effect waves-light" type="submit" name="action">Editar
+				    <i class="material-icons right">send</i>
+				  </button>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>

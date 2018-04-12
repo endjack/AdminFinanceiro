@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Logical Admin</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="../materialize/css/materialize.min.css" media="screen,projection" />
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+		
+</script>
+
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<!-- Page Layout here -->
+	<div class="container row col s12" style="margin-top: 20px">
+		
+		<div class="col s6">
+			<a href="/" class="btn waves-effect waves-light red lighten-1"><i class="material-icons left">arrow_back</i>Voltar</a>			
+		</div>
+		<div class="col s6 right-align">
+			<a href="/cadastrarRecibo" class="btn waves-effect waves-light teal accent-4"><i class="material-icons right">note_add</i>Novo Recibo</a>
+				
+			</div>
+		
+		</div>
+	<div class="container row">
+		<table class="">
+			<thead>
+				<tr>
+					<th class="center-align">Cód</th>
+					<th class="center-align">Nome</th>
+					<th class="center-align">CPF</th>
+					<th class="center-align">Valor</th>
+					<th class="center-align">Referente</th>
+					<th class="center-align">Data Emissão</th>
+					<th class="center-align">Opções</th>			
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="recibo : ${recibos}">
+					<td><span th:text="${recibo.idRec}"></span></td>
+					<td><span th:text="${recibo.nome}"></span></td>					
+					<td><span th:text="${recibo.cpf}"></span></td>
+					<td><span th:text="${recibo.valor}"></span></td>
+					<td><span th:text="${recibo.referencia}"></span></td>
+					<td><span th:text="${recibo.dataEmissao}"></span></td>			
+					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('RC#editarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">edit</i></a></td>			
+					<td><a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${recibo.idRec} + ',\''+ ${recibo.nome} +'\');'"><i class="material-icons left">delete</i></a></td>			
+				
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+<script type="text/javascript">
+		function chamarModal(id, nome){
+			var elem = document.querySelector('.modal');
+			var instance = M.Modal.init(elem);
+
+			var elemento = document.getElementById("corpo");
+			elemento.innerHTML = "<b><h4 style='color:red'>Deletar Recibo</h4> "+nome+" ?</b>";
+			
+			var elemento2 = document.getElementById("foot");
+			elemento2.innerHTML = "<form action='delRecibo' method='post'> <input name='idRec' type='text' value='"+id+
+								"'class='hide'><a href='#!' style='margin-right:10px' class='btn modal-action modal-close waves-effect waves-green'>Não</a>"+
+								"<button type='submit' class='btn waves-effect waves-light red lighten-1'></i>Excluir</button></form>";
+											
+			instance.open();		
+		}
+	</script>
+	
+	
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div id="corpo" class="modal-content">
+			<h4>Modal Header</h4>
+			<p>A bunch of text</p>
+		</div>
+		<div id="foot" class="modal-footer">
+			
+		</div>
+	</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>

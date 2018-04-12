@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Logical Admin</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="../materialize/css/materialize.min.css" media="screen,projection" />
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+		
+</script>
+
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<!-- Page Layout here -->
+	<div class="container row col s12" style="margin-top: 20px">
+		
+		<div class="col s6">
+			<a href="/" class="btn waves-effect waves-light red lighten-1"><i class="material-icons left">arrow_back</i>Voltar</a>			
+		</div>
+		<div class="col s6 right-align">
+			<a href="/cadastrarCliente" class="btn waves-effect waves-light teal accent-4"><i class="material-icons right">person_add</i>Novo Cliente</a>
+				
+			</div>
+		
+	</div>
+	<div class="container row">
+		<table class="">
+			<thead>
+				<tr>
+					<th>Cód</th>
+					<th>Nome</th>
+					<th>CPF</th>
+					<th>Telefone</th>
+					<th>Email</th>
+					<th>Data Inclusão</th>
+					<th>Opções</th>			
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente : ${clientes}">
+					<td><span th:text="${cliente.id}"></span></td>
+					<td><span th:text="${cliente.nome}"></span></td>					
+					<td><span th:text="${cliente.cpf}"></span></td>
+					<td><span th:text="${cliente.tel1}"></span></td>
+					<td><span th:text="${cliente.email}"></span></td>
+					<td><span th:text="${cliente.dataInclusao}"></span></td>			
+					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('CC#editarCliente').arg(0, cliente.id)).build()}"><i class="material-icons left">edit</i></a></td>			
+					<td><a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${cliente.id} + ',\''+ ${cliente.nome} +'\');'"><i class="material-icons left">delete</i></a></td>			
+				
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	
+	<script type="text/javascript">
+		function chamarModal(id, nome){
+			var elem = document.querySelector('.modal');
+			var instance = M.Modal.init(elem);
+
+			var elemento = document.getElementById("corpo");
+			elemento.innerHTML = "<b><h4 style='color:red'>Deletar Cliente</h4> "+nome+" ?</b>";
+			
+			var elemento2 = document.getElementById("foot");
+			elemento2.innerHTML = "<form action='delCliente' method='post'> <input name='idCli' type='text' value='"+id+
+								"'class='hide'><a href='#!' style='margin-right:10px' class='btn modal-action modal-close waves-effect waves-green'>Não</a>"+
+								"<button type='submit' class='btn waves-effect waves-light red lighten-1'></i>Excluir</button></form>";
+											
+			instance.open();		
+		}
+	</script>
+	
+	
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div id="corpo" class="modal-content">
+			<h4>Modal Header</h4>
+			<p>A bunch of text</p>
+		</div>
+		<div id="foot" class="modal-footer">
+			
+		</div>
+	</div>
+	
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>
