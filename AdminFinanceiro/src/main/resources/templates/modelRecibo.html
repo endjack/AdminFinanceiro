@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Logical Admin</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<meta charset="UTF-8">
+
+<script src="js/jquery-3.3.1.min.js"></script>
+
+<script src="http://canvg.github.io/canvg/canvg.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/canvg/1.4.0/canvg.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	function startPrintProcess(canvasObj, fileName, callback) {
+		  var pdf = new jsPDF('a4'),
+		    pdfConf = {
+		      pagesplit: false,
+		      background: '#fff'
+		    };
+		  document.body.appendChild(canvasObj); //appendChild is required for html to add page in pdf
+		  pdf.addHTML(canvasObj, 0, 0, pdfConf, function() {
+		    document.body.removeChild(canvasObj);
+		    pdf.addPage();
+		    pdf.save(fileName + '.pdf');
+		    callback();
+		  });
+		}
+
+		$('#print-btn').click(()=>{
+
+		html2canvas(document.getElementById('dom-to-print'), {
+		    onrendered: function(canvasObj) {
+		      startPrintProcess(canvasObj, 'printedPDF',function (){
+		        //alert('PDF saved');
+		      });
+		      //save this object to the pdf
+		    }
+		  });
+		})
+
+});
+</script>
+<body>
+<div id='dom-to-print'>
+	<div style="margin-top: 20px" class="row">
+		<div class="container">
+			<div class="col s6">
+				<img style="width: 240px;height: 120px" src="img/Logo_Macarena.jpg">
+			</div>
+			<div class="col s6 center-align">
+				<b>Condomínio MACARENA FLAT</b><br/>
+				Rua Sergipe, nº 85<br/>Ponta Negra, Natal - RN
+				Tel: 84 - 3219-5672<br/>
+				<i>www.macarenaﬂat.com.br</i>		
+			</div>
+		
+		</div>
+	</div>
+	<div class="row center-align"><h3>Recibo</h3></div>
+
+
+
+
+</div>
+<button id='print-btn'>Gerar PDF</button>
+</body>
+</html>

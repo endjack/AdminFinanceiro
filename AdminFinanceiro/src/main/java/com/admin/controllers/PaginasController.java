@@ -12,4 +12,9 @@ public class PaginasController {
 		return "home";
 	}
 	
+	@RequestMapping("/modeloRecibo")
+	public String gerarPdf() {
+		return "modelRecibo";
+	}
+	
 }
