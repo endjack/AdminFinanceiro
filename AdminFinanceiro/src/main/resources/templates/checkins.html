@@ -26,19 +26,11 @@
 		<div class="col s4">
 			<a href="/" class="btn waves-effect waves-light red lighten-1"><i class="material-icons left">arrow_back</i>Voltar</a>			
 		</div>
-		<div class="col s4">
-			<div class="nav-wrapper">
-			      <form>
-			        <div class="input-field">
-			          <input id="search" type="search" required>
-			          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-			          <i class="material-icons">close</i>
-			        </div>
-			      </form>
-			    </div>		
+		<div class="col s4 center-align">
+			<h5>Todos os Vouchers Cadastrados</h5>
 		</div>
 		<div class="col s4 right-align">
-			<a href="/cadastrarCliente" class="btn waves-effect waves-light teal accent-4"><i class="material-icons right">person_add</i>Novo Cliente</a>
+			<a href="/cadastrarCheckin" class="btn waves-effect waves-light teal accent-4"><i class="material-icons right">assignment_ind</i>Novo Voucher</a>
 				
 		</div>
 		
@@ -49,24 +41,32 @@
 				<tr>
 					<th>Cód</th>
 					<th>Nome</th>
-					<th>CPF</th>
-					<th>Telefone</th>
-					<th>Email</th>
+					<th>Acomp</th>
+					<th>Doc</th>
+					<th>Flat</th>
+					<th>Check-in</th>			
+					<th>Check-out</th>					
+					<th>Valor</th>
 					<th>Data Inclusão</th>
-					<th>Opções</th>			
+					<th>Opções</th>
+								
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente : ${clientes}">
-					<td><span th:text="${cliente.id}"></span></td>
-					<td><span th:text="${cliente.nome}"></span></td>					
-					<td><span th:text="${cliente.cpf}"></span></td>
-					<td><span th:text="${cliente.tel1}"></span></td>
-					<td><span th:text="${cliente.email}"></span></td>
-					<td><span th:text="${cliente.dataInclusao}"></span></td>			
-					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('CC#editarCliente').arg(0, cliente.id)).build()}"><i class="material-icons left">edit</i></a>		
-						<a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${cliente.id} + ',\''+ ${cliente.nome} +'\');'"><i class="material-icons left">delete</i></a></td>			
-				
+				<tr th:each="checkin : ${checkins}">
+					<td><span th:text="${checkin.idCin}"></span></td>
+					<td><span th:text="${checkin.nome}"></span></td>					
+					<td><span th:text="${checkin.acompanhantes}"></span></td>					
+					<td><span th:text="${checkin.tipoDoc} +': '+${checkin.doc}"></span></td>
+					<td><span th:text="${checkin.flat}"></span></td>
+					<td><span th:text="${checkin.checkin}"></span></td>
+					<td><span th:text="${checkin.checkout}"></span></td>			
+					<td><span th:text="${checkin.valor}"></span></td>			
+					<td><span th:text="${checkin.dataInclusao}"></span></td>			
+					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('VC#editarCheckin').arg(0, checkin.idCin)).build()}"><i class="material-icons left">edit</i></a>		
+						<a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${checkin.idCin} + ',\''+ ${checkin.nome} +'\');'"><i class="material-icons left">delete</i></a>			
+						<a class="waves-effect waves-light" th:href="${(#mvc.url('VC#gerarCheckin').arg(0, checkin.idCin)).build()}"><i class="material-icons left">search</i></a></td>			
+			
 				</tr>
 			</tbody>
 
@@ -80,10 +80,10 @@
 			var instance = M.Modal.init(elem);
 
 			var elemento = document.getElementById("corpo");
-			elemento.innerHTML = "<b><h4 style='color:red'>Deletar Cliente</h4> "+nome+" ?</b>";
+			elemento.innerHTML = "<b><h4 style='color:red'>Deletar Voucher</h4> "+nome+" ?</b>";
 			
 			var elemento2 = document.getElementById("foot");
-			elemento2.innerHTML = "<form action='delCliente' method='post'> <input name='idCli' type='text' value='"+id+
+			elemento2.innerHTML = "<form action='delCheckin' method='post'> <input name='idCin' type='text' value='"+id+
 								"'class='hide'><a href='#!' style='margin-right:10px' class='btn modal-action modal-close waves-effect waves-green'>Não</a>"+
 								"<button type='submit' class='btn waves-effect waves-light red lighten-1'></i>Excluir</button></form>";
 											

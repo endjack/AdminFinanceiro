@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Recibo - Macarena Flat</title>
+	<title th:text="'Voucher-N'+${checkin.IdCin}+' - '+ ${checkin.nome}">Admin Financeiro</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="print,screen" />
 	<meta charset="UTF-8">	
@@ -24,25 +24,45 @@
 	meses = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
 	semana = new Array("Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado");
 	
-	function dataExtenso(data) {
+	function datasExtenso(data, dataIn, dataOut) {
 		var str = data+"";
+		var strIn = dataIn+"";
+		var strOut = dataOut+"";
+		console.log(strIn)
 		var res = str.split("/");
+		var resIn = strIn.split("/");
+		var resOut = strOut.split("/");
+		
 		dia = res[0];
 		mes = res[1];
 		ano = res[2];
 		diaext = dia + " de " + meses[parseInt(mes)-1]
 		+ " de " + ano;
+		
+		dia = resIn[0];
+		mes = resIn[1];
+		ano = resIn[2];
+		cinext = dia + " de " + meses[parseInt(mes)-1]
+		+ " de " + ano;
+		dia = resOut[0];
+		mes = resOut[1];
+		ano = resOut[2];
+		coutext = dia + " de " + meses[parseInt(mes)-1]
+		+ " de " + ano;
+		
 		document.getElementById("data-ext").innerHTML = diaext;
+		document.getElementById("checkin-ext").innerHTML = cinext;
+		document.getElementById("checkout-ext").innerHTML = coutext;
 	}			
 	
 </script>
-<body th:onload="'dataExtenso(\'' + ${recibo.dataEmissao} + '\');'">
+<body th:onload="'datasExtenso(\'' + ${checkin.dataInclusao} + '\' , \''+ ${checkin.checkin} + '\' , \''+ ${checkin.checkout} +'\');'">
 	
 	<div th:replace="fragments/header :: header"></div>
 	<div class=" noprint container row col s12" style="margin-top: 20px">
 		
 		<div class="col s6">
-			<a href="/recibos" class="btn waves-effect waves-light red lighten-1"><i class="material-icons left">arrow_back</i>Voltar</a>			
+			<a href="/checkins" class="btn waves-effect waves-light red lighten-1"><i class="material-icons left">arrow_back</i>Voltar</a>			
 		</div>
 		<div class="col s6 right-align">
 			<a href="http://html2pdfrocket.com/html/topdf?apikey=42532255-cedd-4417-85a8-12cea1dc1a2b" class="btn waves-effect waves-light teal accent-4"><i class="material-icons right">picture_as_pdf</i>Gerar PDF</a>
@@ -69,29 +89,29 @@
 		</div>
 		
 		<div class="row">			
-			<br/><br/><div class="center-align"><h4>Recibo</h4></div><br/><br/>		
+			<br/><br/><div class="center-align"><h5><b>Comprovante de Reserva - Voucher </b><br/><span style="font-size: 10pt">VC<span th:text="${checkin.idCin}"></span></span></h5></div><br/>		
 		</div>
 		
 		<div style="width: 80%" class="row">			
-			<div style="font-size: 15pt;text-align: justify;text-justify: inter-word;" class="">
-				<p>Recebi do Sr.(a) <b><span th:text="${recibo.nome}"></span></b>, com CPF sob o nº <b><span th:text="${recibo.cpf}"></span></b>, 
-				a quantia de <b><span th:text="${valorFormatado}"></span> (<span th:text="${valorExtenso}"></span>)</b>, referente a (ao) 
-				<b><span th:text="${recibo.referencia}"></span></b>. 
-				Dando plena, total e irrevogável quitação.
-				</p>
-				<br/><br/>
+			<ul style="font-size: 15pt" class="collection with-header">
+		        <li class="collection-item"><b>Nome: </b><span th:text="${checkin.nome}"></span></li>
+		        <li class="collection-item"><b>Documento: </b><span th:text="${checkin.tipoDoc} +': '+${checkin.doc}"></span></li>
+		        <li class="collection-item"><b>Flat: </b><span th:text="${checkin.flat}"></span></li>
+		        <li class="collection-item"><b>Check-in: </b><span id="checkin-ext"></span></li>
+		        <li class="collection-item"><b>Check-out: </b><span id="checkout-ext"></span></li>
+		        <li class="collection-item"><b>Valor: </b><span th:text="${checkin.valor}"></span></li>
+		        <li class="collection-item"><b>Acompanhantes: </b><span th:text="${checkin.acompanhantes}"></span></li>
+      		</ul> 
+      		
 				<p class="right-align"> Natal, <span id="data-ext"></span>.</p>
 				<br/><br/>
-				<p class="center-align">
-				_____________________________________________<br/>
-				<b>M. DE F. DA COSTA</b><br/>
-				CNPJ: 13.345.200/0001-28<br/>
+				<p class="center-align"><br/>
+				<b>CONDOMÍNIO MACARENA FLAT</b><br/>
 				Rua Pedro Fonseca Filho, 8821<br/>
 				Ponta Negra, Natal- RN<br/>
-				Tel: 84 - 99939-4472
+				Tel: 84 - 3219-5672
 				
-				</p>
-			</div>		
+				</p>	
 		</div>
 	</div>			
 </body>

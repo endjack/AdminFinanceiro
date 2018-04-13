@@ -20,7 +20,7 @@
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	
-	<!-- Page Layout here -->
+	<!-- Row de Voltar -->
 	<div class="container row col s12" style="margin-top: 20px">
 		
 		<div class="col s6">
@@ -31,9 +31,11 @@
 				
 			</div>
 		
-		</div>
+	</div>
+	<!-- Row de Voltar -->
+	
 	<div class="container row">
-		<table class="">
+		<table class="responsive-table highlight">
 			<thead>
 				<tr>
 					<th class="center-align">Cód</th>
@@ -49,13 +51,13 @@
 				<tr th:each="recibo : ${recibos}">
 					<td><span th:text="${recibo.idRec}"></span></td>
 					<td><span th:text="${recibo.nome}"></span></td>					
-					<td><span th:text="${recibo.cpf}"></span></td>
+					<td style="white-space: nowrap"><span th:text="${recibo.cpf}"></span></td>
 					<td><span th:text="${recibo.valor}"></span></td>
 					<td><span th:text="${recibo.referencia}"></span></td>
 					<td><span th:text="${recibo.dataEmissao}"></span></td>			
-					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('RC#editarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">edit</i></a></td>			
-					<td><a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${recibo.idRec} + ',\''+ ${recibo.nome} +'\');'"><i class="material-icons left">delete</i></a></td>			
-					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('RC#gerarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">picture_as_pdf</i></a></td>			
+					<td style="white-space: nowrap"><a class="waves-effect waves-light" th:href="${(#mvc.url('RC#editarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">edit</i></a>			
+						<a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${recibo.idRec} + ',\''+ ${recibo.nome} +'\');'"><i class="material-icons left">delete</i></a>			
+						<a class="waves-effect waves-light" th:href="${(#mvc.url('RC#gerarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">search</i></a></td>			
 					
 				</tr>
 			</tbody>

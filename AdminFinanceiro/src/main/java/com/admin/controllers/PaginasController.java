@@ -13,8 +13,8 @@ public class PaginasController {
 	}
 	
 	@RequestMapping("/modeloRecibo")
-	public String gerarPdf() {
+	public String gerarImpressoes() {
 		return "modelRecibo";
-	}
+	}	
 	
 }

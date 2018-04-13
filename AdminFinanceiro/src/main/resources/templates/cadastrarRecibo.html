@@ -61,9 +61,10 @@
 						</div>			
 				</div>
 				<div class="row">
-					<div class="input-field col s3">
-						<input name="dataEmissao" th:value="${#dates.format(#dates.createNow(),'dd/MM/YYYY')}" id="" type="text" class="validate"> 
-							<label for="dataEmissao" >Data de Emissão</label>					
+					<div class="col s3">
+						<label for="dataEmissao" >Data de Emissão</label>
+						<input placeholder="Data de Emissão" name="dataEmissao" th:value="${#dates.format(#dates.createNow(),'dd/MM/YYYY')}" id="" type="text" class="validate"> 
+												
 					</div>	
 			
 				</div>
