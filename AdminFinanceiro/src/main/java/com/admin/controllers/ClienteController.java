@@ -63,6 +63,5 @@ public class ClienteController {
 	public String salvarEdicaoCliente(Cliente cliente){
 		cr.save(cliente);
 		return "redirect:/clientes";
-	}
-	
+	}	
 }

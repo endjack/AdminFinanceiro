@@ -57,7 +57,7 @@ public class ReciboController {
 		long aux = Long.parseLong(idRec);
 		Recibo recibo = rr.findByIdRec(aux);
 		rr.delete(recibo);
-		return "redirect:/clientes";
+		return "redirect:/recibos";
 	}
 	
 	

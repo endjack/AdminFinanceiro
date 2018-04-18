@@ -3,25 +3,23 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <title>Logical Admin</title>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" />
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet"
-	href="../materialize/css/materialize.min.css" media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.min.css" media="screen,projection" />
 <meta charset="UTF-8">
-
-
 <style type="text/css">
 .input-field{
 	margin-top:0px;
 	margin-bottom: 0px
 }
-
 </style>
-
+<script type="text/javascript">
+	function chamarModal(){
+		var elem = document.querySelector('.modal');
+		var instance = M.Modal.init(elem);		
+		instance.open();		
+	}
+</script>
 </head>
-
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	
@@ -41,9 +39,12 @@
 		<div class="row">
 			<form class="col s12" action="cadastrarRecibo" method="post">
 				<div class="row">
-					<div class="input-field col s9">
-						<input id="nome" type="text" class="" name="nome"> 
+					<div class="input-field col s8">
+						<input id="nome" type="text" class="" name="nome">
 						<label for="nome">Nome Completo</label>
+					</div>
+					<div class="input-field col s1">
+						<a href="#" onclick="chamarModal()"><i class="medium material-icons">person</i></a>
 					</div>
 					<div class="input-field col s3">
 							<input id="cpf" type="text" class="" name="cpf"> 
@@ -76,6 +77,32 @@
 				</div>
 				
 			</form>
+		</div>
+	</div>
+
+<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<div id="corpo" class="modal-content">
+		<nav>
+		    <div class="nav-wrapper">
+		      <form>
+		        <div class="input-field">
+		          <input id="search" type="search" required>
+		          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+		          <i class="material-icons">close</i>
+		        </div>
+		      </form>
+		    </div>
+		  </nav>
+		
+		
+		
+		
+		
+		
+		</div>
+		<div id="foot" class="modal-footer">
+			<a href='#!' style='margin-right:10px' class='btn modal-action modal-close waves-effect waves-green'>Sair</a>
 		</div>
 	</div>
 

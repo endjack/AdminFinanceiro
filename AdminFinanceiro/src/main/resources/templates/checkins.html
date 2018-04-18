@@ -54,16 +54,16 @@
 			</thead>
 			<tbody>
 				<tr th:each="checkin : ${checkins}">
-					<td><span th:text="${checkin.idCin}"></span></td>
-					<td><span th:text="${checkin.nome}"></span></td>					
-					<td><span th:text="${checkin.acompanhantes}"></span></td>					
-					<td><span th:text="${checkin.tipoDoc} +': '+${checkin.doc}"></span></td>
-					<td><span th:text="${checkin.flat}"></span></td>
-					<td><span th:text="${checkin.checkin}"></span></td>
-					<td><span th:text="${checkin.checkout}"></span></td>			
-					<td><span th:text="${checkin.valor}"></span></td>			
-					<td><span th:text="${checkin.dataInclusao}"></span></td>			
-					<td><a class="waves-effect waves-light" th:href="${(#mvc.url('VC#editarCheckin').arg(0, checkin.idCin)).build()}"><i class="material-icons left">edit</i></a>		
+					<td style="padding:2px;"><span th:text="${checkin.idCin}"></span></td>
+					<td style="padding:2px;"><span th:text="${checkin.nome}"></span></td>					
+					<td style="padding:2px;"><span th:text="${checkin.acompanhantes}"></span></td>					
+					<td style="padding:2px;"><span th:text="${checkin.tipoDoc} +': '+${checkin.doc}"></span></td>
+					<td style="padding:2px;"><span th:text="${checkin.flat}"></span></td>
+					<td style="padding:2px;"><span th:text="${checkin.checkin}"></span></td>
+					<td style="padding:2px;"><span th:text="${checkin.checkout}"></span></td>			
+					<td style="padding:2px;"><span th:text="${checkin.valor}"></span></td>			
+					<td style="padding:2px;"><span th:text="${checkin.dataInclusao}"></span></td>			
+					<td style="padding:2px;"><a class="waves-effect waves-light" th:href="${(#mvc.url('VC#editarCheckin').arg(0, checkin.idCin)).build()}"><i class="material-icons left">edit</i></a>		
 						<a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${checkin.idCin} + ',\''+ ${checkin.nome} +'\');'"><i class="material-icons left">delete</i></a>			
 						<a class="waves-effect waves-light" th:href="${(#mvc.url('VC#gerarCheckin').arg(0, checkin.idCin)).build()}"><i class="material-icons left">search</i></a></td>			
 			

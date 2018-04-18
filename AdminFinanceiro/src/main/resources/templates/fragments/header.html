@@ -1,14 +1,20 @@
 <header class="noprint th:fragment=header">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<nav>
-		<div class="nav-wrapper teal lighten-2">
-			<a href="/" class="brand-logo"><i class="material-icons">cloud</i>Admin
-				Financeiro </a>
+		<div style="padding-left: 10px" class="nav-wrapper teal lighten-2">
+			<a href="/" class="brand-logo"><i class="material-icons">cloud</i>Logical Administradora ME </a>
 			<ul class="right">
-				<li><a href="/clientes"><i class="material-icons">people</i></a></li>
-				<li><a href="/recibos"><i class="material-icons">description</i></a></li>
-				<li><a href="#"><i class="material-icons">search</i></a></li>
+				<li><a href="/clientes"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Listar Clientes">people</i></a></li>
+				<li><a href="/recibos"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Listar Recibos">description</i></a></li>
+				<li><a href="/recibos"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Listar Vouchers">assignment_ind</i></a></li>
+				<li><a href="#"><i class="material-icons tooltipped" data-position="bottom" data-tooltip="Procurar">search</i></a></li>
 				<li><a href="#"><i class="material-icons">more_vert</i></a></li>
 			</ul>
 		</div>
 	</nav>
+	<script type="text/javascript">
+			$(document).ready(function(){
+			    $('.tooltipped').tooltip();
+			  });
+	</script>
 </header>

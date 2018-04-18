@@ -15,23 +15,102 @@
 	<div th:replace="fragments/header :: header"></div>
 	<!-- Page Layout here -->
 	<div class="row">
-
 		<div class="col s3">
+		 <div style="padding: 5px" class="card-panel teal">
 			<div class="collection">
-				<a href="/clientes" class="collection-item "><i class="material-icons right">person_add</i>Clientes</a>
+				<a href="/clientes" class="collection-item"><i class="material-icons right">person_add</i>Clientes</a>
 				<a href="/recibos" class="collection-item "><i class="material-icons right">note_add</i>Recibos</a>
 				<a href="/checkins" class="collection-item "><i class="material-icons right">assignment_ind</i>Vouchers</a> 
-				<a href="/checkouts" class="collection-item "><i class="material-icons right">exit_to_app</i>Check-out</a> 
+				<a href="/checkouts" class="collection-item "><i class="material-icons right">exit_to_app</i>Check-outs</a>
+				<a href="#" class="collection-item "><i class="material-icons right">library_books</i>Contratos</a>
+				<a href="#" class="collection-item "><i class="material-icons right">store</i>Flats</a>   
 
+			</div>
 			</div>
 		</div>
 
-		<div class="col s9">
-
+		<div class="col s5">
+			<div class="card">
+				<div class="card-content teal lighten-2 white-text">
+					<p class="">
+						<i class=""></i> Clientes Cadastrados: <span th:text="${totalClientes}"></span>
+					</p>
+				</div>
+				<div class="card-action teal darken-1 white-text">
+					<div style="padding-top: 5px" id="" class="center-align">						
+							<!-- IF CUSTOMER IS ANONYMOUS -->
+							<div th:if="${totalClientes} > 0">
+							   <p class="right-align">Últimos Cadastrados</p>
+							<table class="responsive-table">
+							   <tbody th:each="ultClientes: ${ultClientes}" th:remove="tag">
+							      <tr>
+							         <td style="padding:2px;" th:text="${ultClientes.nome}">...</td>
+							         <td style="padding:2px;" th:text="${ultClientes.dataInclusao}">...</td>
+							      </tr>
+							   </tbody>
+							</table>
+							</div>
+							<!-- ELSE -->
+							<div th:unless="${totalClientes} > 0">
+							   <p class="right-align">Sem cadastros</p>
+							</div>							
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div style="" class="card-content teal lighten-2 white-text">
+					<p class="">
+						<i class=""></i> Recibos Cadastrados: <span th:text="${totalRecibos}"></span>
+					</p>
+				</div>
+				<div style="" class="card-action teal darken-1 white-text">
+					<div style="padding-top: 5px" id="" class="center-align">						
+							<!-- IF CUSTOMER IS ANONYMOUS -->
+							<div th:if="${totalRecibos} > 0">
+							   <p class="right-align">Últimos Recibos</p>
+							<table class="responsive-table" style="margin-top:0px;margin-bottom: 0px">
+							   <tbody th:each="ultRecibos: ${ultRecibos}" th:remove="tag">
+							      <tr>
+							         <td style="padding:2px;" th:text="${ultRecibos.nome}">...</td>
+							         <td style="padding:2px;" th:text="${ultRecibos.dataEmissao}">...</td>
+							      </tr>
+							   </tbody>
+							</table>
+							</div>
+							<!-- ELSE -->
+							<div th:unless="${totalRecibos} > 0">
+							   <p class="right-align">Sem recibos</p>
+							</div>							
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-
+	<div class="col s4">
+			<div class="card">
+				<div class="card-content teal lighten-2 white-text">
+					<p class="">
+						<i class=""></i> Clientes Cadastrados: <span></span>
+					</p>
+				</div>
+				<div class="card-action teal darken-1 white-text">
+					<div style="padding-top: 5px" id="" class="center-align">						
+													
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div style="" class="card-content teal lighten-2 white-text">
+					<p class="">
+						<i class=""></i> Recibos Cadastrados: <span></span>
+					</p>
+				</div>
+				<div style="" class="card-action teal darken-1 white-text">
+					<div style="padding-top: 5px" id="" class="center-align">																		
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>
 </body>
-
-
 </html>

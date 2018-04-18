@@ -49,12 +49,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="recibo : ${recibos}">
-					<td><span th:text="${recibo.idRec}"></span></td>
-					<td><span th:text="${recibo.nome}"></span></td>					
+					<td style="padding:2px;"><span th:text="${recibo.idRec}"></span></td>
+					<td style="padding:2px;"><span th:text="${recibo.nome}"></span></td>					
 					<td style="white-space: nowrap"><span th:text="${recibo.cpf}"></span></td>
-					<td><span th:text="${recibo.valor}"></span></td>
-					<td><span th:text="${recibo.referencia}"></span></td>
-					<td><span th:text="${recibo.dataEmissao}"></span></td>			
+					<td style="padding:2px;"><span th:text="${recibo.valor}"></span></td>
+					<td style="padding:2px;"><span th:text="${recibo.referencia}"></span></td>
+					<td style="padding:2px;"><span th:text="${recibo.dataEmissao}"></span></td>			
 					<td style="white-space: nowrap"><a class="waves-effect waves-light" th:href="${(#mvc.url('RC#editarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">edit</i></a>			
 						<a class="waves-effect waves-light" th:onclick="'chamarModal(' + ${recibo.idRec} + ',\''+ ${recibo.nome} +'\');'"><i class="material-icons left">delete</i></a>			
 						<a class="waves-effect waves-light" th:href="${(#mvc.url('RC#gerarRecibo').arg(0, recibo.idRec)).build()}"><i class="material-icons left">search</i></a></td>			
