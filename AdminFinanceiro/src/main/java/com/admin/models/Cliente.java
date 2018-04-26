@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Field;
+
 @Entity
 @Table(name="clientes")
 public class Cliente implements Serializable {
@@ -18,9 +20,12 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private long id;
 	
+	@Field
 	private String nome;
 	private String sexo;
 	private String endereco;
+	
+	@Field
 	private String cpf;
 	private String tipoDoc;
 	private String doc;

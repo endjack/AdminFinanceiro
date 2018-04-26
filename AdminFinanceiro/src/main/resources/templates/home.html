@@ -29,7 +29,7 @@
 			</div>
 		</div>
 
-		<div class="col s5">
+		<div class="col s4">
 			<div class="card">
 				<div class="card-content teal lighten-2 white-text">
 					<p class="">
@@ -85,16 +85,33 @@
 				</div>
 			</div>
 		</div>
-	<div class="col s4">
+	<div class="col s5">
 			<div class="card">
 				<div class="card-content teal lighten-2 white-text">
 					<p class="">
-						<i class=""></i> Clientes Cadastrados: <span></span>
+						<i class=""></i>  Check-ins <span></span>
 					</p>
 				</div>
 				<div class="card-action teal darken-1 white-text">
 					<div style="padding-top: 5px" id="" class="center-align">						
-													
+							<!-- IF-->
+								<div th:if="${totalVouchers} > 0">
+								   <p class="right-align">Próximos Checkins</p>
+								<table class="responsive-table" style="margin-top:0px;margin-bottom: 0px">
+								   <tbody th:each="ultVouchers, iter : ${ultVouchers}" th:remove="tag">
+								   		
+								      <tr>
+								         <td style="padding:2px;" th:text="${ultVouchers.nome}">...</td>
+								         <td style="padding:2px; font-size: 8pt" th:text="${ultVouchers.checkin}+' - '+${tempoRestanteCheckins.get(iter.index)}">...</td>
+								      </tr>
+								    
+								   </tbody>
+								</table>
+								</div>
+							<!-- ELSE -->
+								<div th:unless="${totalVouchers} > 0">
+								   <p class="right-align">Sem Vouchers</p>
+								</div>											
 					</div>
 				</div>
 			</div>
